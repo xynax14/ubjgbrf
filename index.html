@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя 💜</title>
+    <style>
+        /* Градиентный фон с анимацией */
+        body {
+            background: linear-gradient(45deg, #ff69b4, #8a2be2, #ff4500);
+            background-size: 400% 400%;
+            animation: backgroundAnimation 10s infinite alternate;
+            font-family: "Arial", sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        @keyframes backgroundAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        /* Радужное свечение текста */
+        h1 {
+            color: white;
+            font-size: 3em;
+            text-shadow: 0 0 10px white, 0 0 20px pink, 0 0 30px purple;
+            animation: glow 2s infinite alternate;
+        }
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px white, 0 0 20px pink, 0 0 30px purple; }
+            100% { text-shadow: 0 0 15px white, 0 0 25px red, 0 0 35px blue; }
+        }
+
+        /* Кнопки */
+        button {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ffb3e6;
+            transform: scale(1.1);
+        }
+
+        /* Сердечки при клике */
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            color: red;
+            animation: float 2s ease-in-out forwards;
+        }
+        @keyframes float {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-150px); opacity: 0; }
+        }
+
+        /* Огоньки */
+        .sparkle {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Фейерверк */
+        .firework {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: yellow;
+            border-radius: 50%;
+            animation: explode 1s ease-out forwards;
+        }
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(4); opacity: 0; }
+        }
+    </style>
+</head>
+<body onclick="createHeart(event)">
+
+    <h1>Ты у меня самая лучшая! 💜</h1>
+
+    <button onclick="showFireworks()">🎆 Фейерверк</button>
+    <button onclick="toggleMusic()">🎵 Музыка</button>
+
+    <!-- Музыка -->
+    <audio id="backgroundMusic" loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        // Функция для появления сердечек при клике
+        function createHeart(event) {
+            let heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.innerHTML = "❤️";
+            heart.style.left = event.clientX + "px";
+            heart.style.top = event.clientY + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 2000);
+        }
+
+        // Фейерверк
+        function showFireworks() {
+            for (let i = 0; i < 20; i++) {
+                let firework = document.createElement("div");
+                firework.classList.add("firework");
+                firework.style.left = Math.random() * 100 + "vw";
+firework.style.top = Math.random() * 50 + "vh";
+                firework.style.background = hsl(${Math.random() * 360}, 100%, 50%);
+                document.body.appendChild(firework);
+                setTimeout(() => { firework.remove(); }, 1000);
+            }
+        }
+
+        // Музыка
+        let music = document.getElementById("backgroundMusic");
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
+        }
+
+        // Создание огоньков
+        function createSparkles() {
+            for (let i = 0; i < 30; i++) {
+                let sparkle = document.createElement("div");
+                sparkle.classList.add("sparkle");
+                sparkle.style.left = Math.random() * 100 + "vw";
+                sparkle.style.top = Math.random() * 100 + "vh";
+                sparkle.style.animationDuration = Math.random() * 2 + 1 + "s";
+                document.body.appendChild(sparkle);
+            }
+        }
+        createSparkles();
+    </script>
+</body>
+</html>
